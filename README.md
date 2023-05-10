@@ -71,7 +71,7 @@ application = get_wsgi_application()
 
 注：测试用
 ```
-    gunicorn myappsserver.wsgi:application --bind 0.0.0.0:8080 --workers 2
+    gunicorn myappsserver.wsgi:application --bind 0.0.0.0:8687 --workers 2
     gunicorn 启动文件:app变量 -b 监听地址 -w work数量即监听进程数 -t 最大超时时间
 ```
 ### 使用supervisor启动
