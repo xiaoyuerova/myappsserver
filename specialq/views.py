@@ -6,70 +6,83 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
 from specialq.serializers import SpecialSubmitSerializer
 
 from rest_framework.decorators import api_view
 from django.db.models import Max
+from .manage.admin import *
 
 
 # Create your views here.
 
 
-class SpecialSubmitList(APIView):
-    """
-    列出所有的snippets
-    """
+# class SpecialSubmitList(APIView):
+#     """
+#     列出所有的snippets
+#     """
+#
+#     def get(self, request, wjid=None):
+#
+#         if wjid is None:
+#             submit = SpecialSubmit.objects.all()
+#             serializer = SpecialSubmitSerializer(submit, many=True)
+#             return Response(serializer.data)
+#         else:
+#             try:
+#                 submit = SpecialSubmit.objects.filter(WjId__exact=wjid)
+#                 serializer = SpecialSubmitSerializer(submit, many=True)
+#                 return Response(serializer.data)
+#             except SpecialSubmit.DoesNotExist:
+#                 raise Http404
+#
+#     def post(self, request):
+#         serializer = SpecialSubmitSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#
+#
+# class SpecialSubmitDetail(APIView):
+#     """
+#     检索，更新或删除一个snippet示例。
+#     """
+#
+#     def get_object(self, wjid, agent):
+#         try:
+#             return SpecialSubmit.objects.get(WjId=wjid, Agent=agent)
+#         except SpecialSubmit.DoesNotExist:
+#             raise Http404
+#
+#     def get(self, request, wjid, agent):
+#         submit = self.get_object(wjid, agent)
+#         serializer = SpecialSubmitSerializer(submit)
+#         return Response(serializer.data)
+#
+#     def put(self, request, wjid, agent):
+#         submit = self.get_object(wjid, agent)
+#         serializer = SpecialSubmitSerializer(submit, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#
+#     def delete(self, request, wjid, agent):
+#         submit = self.get_object(wjid, agent)
+#         submit.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def get(self, request, wjid=None):
 
-        if wjid is None:
-            submit = SpecialSubmit.objects.all()
-            serializer = SpecialSubmitSerializer(submit, many=True)
-            return Response(serializer.data)
-        else:
-            try:
-                submit = SpecialSubmit.objects.filter(WjId__exact=wjid)
-                serializer = SpecialSubmitSerializer(submit, many=True)
-                return Response(serializer.data)
-            except SpecialSubmit.DoesNotExist:
-                raise Http404
-
-    def post(self, request):
-        serializer = SpecialSubmitSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class SpecialSubmitList(generics.ListCreateAPIView):
+    queryset = SpecialSubmit.objects.all()
+    serializer_class = SpecialSubmitSerializer
 
 
-class SpecialSubmitDetail(APIView):
-    """
-    检索，更新或删除一个snippet示例。
-    """
-
-    def get_object(self, wjid, agent):
-        try:
-            return SpecialSubmit.objects.get(WjId=wjid, Agent=agent)
-        except SpecialSubmit.DoesNotExist:
-            raise Http404
-
-    def get(self, request, wjid, agent):
-        submit = self.get_object(wjid, agent)
-        serializer = SpecialSubmitSerializer(submit)
-        return Response(serializer.data)
-
-    def put(self, request, wjid, agent):
-        submit = self.get_object(wjid, agent)
-        serializer = SpecialSubmitSerializer(submit, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, wjid, agent):
-        submit = self.get_object(wjid, agent)
-        submit.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class SpecialSubmitDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SpecialSubmitSerializer
+    lookup_url_kwarg = 'id'
+    queryset = SpecialSubmit.objects.all()
 
 
 @api_view(['POST'])
@@ -110,3 +123,18 @@ def authentic(request):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except SpecialSubmit.DoesNotExist:
             return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class SpecialSubmitManege(APIView):
+    operates = {
+        # 'init': init_data,
+        'delete': delete_data,
+        # 'download': download_data,
+        # 'refresh': refresh_data
+    }
+
+    def put(self, request, opt):
+        if opt in self.operates.keys():
+            self.operates.get(opt)()
+            return Response(status=status.HTTP_200_OK)
+        Response("opt error")

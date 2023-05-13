@@ -11,7 +11,7 @@ def main():
     Runserver.default_port = PORT  # 修改默认端口
 
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myappsserver2.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myappsserver.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

@@ -6,4 +6,4 @@ from .models import SpecialSubmit
 class SpecialSubmitSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SpecialSubmit
-        fields = ['WjId', 'Number', 'Data', 'Time', 'SubmitIp', 'UseTime', 'Agent', 'Answer']
+        fields = ['id', 'WjId', 'Number', 'Data', 'Time', 'SubmitIp', 'UseTime', 'Agent', 'Answer']

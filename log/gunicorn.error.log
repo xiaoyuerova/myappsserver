@@ -2992,3 +2992,312 @@ ModuleNotFoundError: No module named 'myappsserver2'
 [2023-05-10 21:28:16 +0800] [651854] [INFO] Booting worker with pid: 651854
 [2023-05-10 21:28:16 +0800] [651855] [INFO] Booting worker with pid: 651855
 [2023-05-10 21:28:16 +0800] [651856] [INFO] Booting worker with pid: 651856
+Method Not Allowed: /special/submit
+Invalid HTTP_HOST header: '0.0.0.0:8687'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/utils/deprecation.py", line 135, in __call__
+    response = self.process_request(request)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/http/request.py", line 148, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8687'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Bad Request: /
+Method Not Allowed: /special/submit
+Method Not Allowed: /special/submit
+Internal Server Error: /special/submit
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: specialq_specialsubmit.WjId, specialq_specialsubmit.Agent
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/generic/base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/home/wxt/myapps/myappsserver/specialq/views.py", line 92, in submit
+    serializer.save()
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/query.py", line 671, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/wxt/myapps/myappsserver/specialq/models.py", line 57, in save
+    super().save(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 831, in save
+    self.save_base(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 882, in save_base
+    updated = self._save_table(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 1025, in _save_table
+    results = self._do_insert(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 1066, in _do_insert
+    return manager._insert(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/query.py", line 1790, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1657, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: specialq_specialsubmit.WjId, specialq_specialsubmit.Agent
+Internal Server Error: /special/submit
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: specialq_specialsubmit.WjId, specialq_specialsubmit.Agent
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/generic/base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/home/wxt/myapps/myappsserver/specialq/views.py", line 92, in submit
+    serializer.save()
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/query.py", line 671, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/wxt/myapps/myappsserver/specialq/models.py", line 57, in save
+    super().save(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 831, in save
+    self.save_base(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 882, in save_base
+    updated = self._save_table(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 1025, in _save_table
+    results = self._do_insert(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 1066, in _do_insert
+    return manager._insert(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/query.py", line 1790, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1657, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: specialq_specialsubmit.WjId, specialq_specialsubmit.Agent
+Method Not Allowed: /special/submit
+Internal Server Error: /special/submit
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: specialq_specialsubmit.WjId, specialq_specialsubmit.Agent
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/generic/base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/home/wxt/myapps/myappsserver/specialq/views.py", line 92, in submit
+    serializer.save()
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/query.py", line 671, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/wxt/myapps/myappsserver/specialq/models.py", line 57, in save
+    super().save(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 831, in save
+    self.save_base(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 882, in save_base
+    updated = self._save_table(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 1025, in _save_table
+    results = self._do_insert(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/base.py", line 1066, in _do_insert
+    return manager._insert(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/query.py", line 1790, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1657, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: specialq_specialsubmit.WjId, specialq_specialsubmit.Agent
+Bad Request: /special/submit
+Bad Request: /special/submit
+[2023-05-12 20:24:53 +0800] [651852] [INFO] Handling signal: term
+[2023-05-12 12:24:53 +0000] [651855] [INFO] Worker exiting (pid: 651855)
+[2023-05-12 12:24:53 +0000] [651856] [INFO] Worker exiting (pid: 651856)
+[2023-05-12 12:24:53 +0000] [651854] [INFO] Worker exiting (pid: 651854)
+[2023-05-12 12:24:53 +0000] [651853] [INFO] Worker exiting (pid: 651853)
+[2023-05-12 20:24:54 +0800] [651852] [INFO] Shutting down: Master
+[2023-05-12 20:24:55 +0800] [667910] [INFO] Starting gunicorn 20.1.0
+[2023-05-12 20:24:55 +0800] [667910] [INFO] Listening at: http://0.0.0.0:8687 (667910)
+[2023-05-12 20:24:55 +0800] [667910] [INFO] Using worker: sync
+[2023-05-12 20:24:55 +0800] [667911] [INFO] Booting worker with pid: 667911
+[2023-05-12 20:24:55 +0800] [667912] [INFO] Booting worker with pid: 667912
+[2023-05-12 20:24:55 +0800] [667913] [INFO] Booting worker with pid: 667913
+[2023-05-12 20:24:55 +0800] [667914] [INFO] Booting worker with pid: 667914
+Not Found: /special/admin/delete
+[2023-05-12 22:01:28 +0800] [667910] [INFO] Handling signal: term
+[2023-05-12 14:01:28 +0000] [667911] [INFO] Worker exiting (pid: 667911)
+[2023-05-12 14:01:28 +0000] [667912] [INFO] Worker exiting (pid: 667912)
+[2023-05-12 14:01:28 +0000] [667913] [INFO] Worker exiting (pid: 667913)
+[2023-05-12 14:01:28 +0000] [667914] [INFO] Worker exiting (pid: 667914)
+[2023-05-12 22:01:29 +0800] [667910] [INFO] Shutting down: Master
+[2023-05-12 22:01:30 +0800] [668498] [INFO] Starting gunicorn 20.1.0
+[2023-05-12 22:01:30 +0800] [668498] [INFO] Listening at: http://0.0.0.0:8687 (668498)
+[2023-05-12 22:01:30 +0800] [668498] [INFO] Using worker: sync
+[2023-05-12 22:01:30 +0800] [668499] [INFO] Booting worker with pid: 668499
+[2023-05-12 22:01:30 +0800] [668500] [INFO] Booting worker with pid: 668500
+[2023-05-12 22:01:30 +0800] [668501] [INFO] Booting worker with pid: 668501
+[2023-05-12 22:01:30 +0800] [668502] [INFO] Booting worker with pid: 668502
+Internal Server Error: /special/admin/download
+Traceback (most recent call last):
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/django/views/generic/base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/home/wxt/miniconda3/envs/myapps/lib/python3.10/site-packages/rest_framework/views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+[2023-05-12 22:08:47 +0800] [668498] [INFO] Handling signal: term
+[2023-05-12 14:08:47 +0000] [668500] [INFO] Worker exiting (pid: 668500)
+[2023-05-12 14:08:47 +0000] [668499] [INFO] Worker exiting (pid: 668499)
+[2023-05-12 14:08:47 +0000] [668502] [INFO] Worker exiting (pid: 668502)
+[2023-05-12 14:08:47 +0000] [668501] [INFO] Worker exiting (pid: 668501)
+[2023-05-12 22:08:48 +0800] [668498] [INFO] Shutting down: Master
+[2023-05-12 22:08:49 +0800] [668614] [INFO] Starting gunicorn 20.1.0
+[2023-05-12 22:08:49 +0800] [668614] [INFO] Listening at: http://0.0.0.0:8687 (668614)
+[2023-05-12 22:08:49 +0800] [668614] [INFO] Using worker: sync
+[2023-05-12 22:08:49 +0800] [668615] [INFO] Booting worker with pid: 668615
+[2023-05-12 22:08:49 +0800] [668616] [INFO] Booting worker with pid: 668616
+[2023-05-12 22:08:49 +0800] [668617] [INFO] Booting worker with pid: 668617
+[2023-05-12 22:08:49 +0800] [668618] [INFO] Booting worker with pid: 668618
+[2023-05-12 22:16:00 +0800] [668614] [INFO] Handling signal: term
+[2023-05-12 14:16:00 +0000] [668617] [INFO] Worker exiting (pid: 668617)
+[2023-05-12 14:16:00 +0000] [668615] [INFO] Worker exiting (pid: 668615)
+[2023-05-12 14:16:00 +0000] [668616] [INFO] Worker exiting (pid: 668616)
+[2023-05-12 14:16:00 +0000] [668618] [INFO] Worker exiting (pid: 668618)
+[2023-05-12 22:16:00 +0800] [668614] [INFO] Shutting down: Master
+[2023-05-12 22:16:01 +0800] [668662] [INFO] Starting gunicorn 20.1.0
+[2023-05-12 22:16:01 +0800] [668662] [INFO] Listening at: http://0.0.0.0:8687 (668662)
+[2023-05-12 22:16:01 +0800] [668662] [INFO] Using worker: sync
+[2023-05-12 22:16:01 +0800] [668663] [INFO] Booting worker with pid: 668663
+[2023-05-12 22:16:02 +0800] [668664] [INFO] Booting worker with pid: 668664
+[2023-05-12 22:16:02 +0800] [668665] [INFO] Booting worker with pid: 668665
+[2023-05-12 22:16:02 +0800] [668666] [INFO] Booting worker with pid: 668666
+[2023-05-13 15:45:08 +0800] [668662] [INFO] Handling signal: term
+[2023-05-13 07:45:08 +0000] [668663] [INFO] Worker exiting (pid: 668663)
+[2023-05-13 07:45:08 +0000] [668665] [INFO] Worker exiting (pid: 668665)
+[2023-05-13 07:45:08 +0000] [668664] [INFO] Worker exiting (pid: 668664)
+[2023-05-13 07:45:08 +0000] [668666] [INFO] Worker exiting (pid: 668666)
+[2023-05-13 15:45:09 +0800] [668662] [INFO] Shutting down: Master
+[2023-05-13 15:45:10 +0800] [674598] [INFO] Starting gunicorn 20.1.0
+[2023-05-13 15:45:10 +0800] [674598] [INFO] Listening at: http://0.0.0.0:8687 (674598)
+[2023-05-13 15:45:10 +0800] [674598] [INFO] Using worker: sync
+[2023-05-13 15:45:10 +0800] [674599] [INFO] Booting worker with pid: 674599
+[2023-05-13 15:45:10 +0800] [674600] [INFO] Booting worker with pid: 674600
+[2023-05-13 15:45:10 +0800] [674601] [INFO] Booting worker with pid: 674601
+[2023-05-13 15:45:10 +0800] [674602] [INFO] Booting worker with pid: 674602

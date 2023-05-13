@@ -26,6 +26,7 @@ from django.utils.translation import gettext_lazy as _
 
 # 提交信息表
 class SpecialSubmit(models.Model):
+    id = models.BigAutoField(primary_key=True)
     WjId = models.IntegerField(verbose_name='关联问卷id')
     Number = models.IntegerField(verbose_name='第number位提交的人')
     Data = models.DateField(default=timezone.now().date(), verbose_name='提交日期')
